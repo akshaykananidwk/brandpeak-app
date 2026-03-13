@@ -1,0 +1,19 @@
+# Build artifacts
+**/build/
+.gradle/
+captures/
+.externalNativeBuild/
+.cxx/
+local.properties
+
+# IDE files
+.idea/
+*.iml
+.navigation/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
