@@ -101,9 +101,14 @@ public class SplashyActivity extends AppCompatActivity {
                             Util.showLog("API_KEY: " + mFirebaseRemoteConfig.getString("apiKey"));
 //                            Log.e("SB", " Splash Screen : onComplete:" + mFirebaseRemoteConfig.getString("apiKey"));
 //                            prefManager.setString(Constant.api_key, "123456");
-                            prefManager.setString(Constant.api_key, mFirebaseRemoteConfig.getString("apiKey"));
-
-                            Config.API_KEY = prefManager.getString(Constant.api_key);
+                            String firebaseKey = mFirebaseRemoteConfig.getString("apiKey");
+                            if (firebaseKey != null && !firebaseKey.equals("") && !firebaseKey.equals("123456")) {
+                                prefManager.setString(Constant.api_key, firebaseKey);
+                                Config.API_KEY = firebaseKey;
+                            } else {
+                                // Keep the hardcoded one from Config.java
+                                prefManager.setString(Constant.api_key, Config.API_KEY);
+                            }
                             prefManager.setString("FIRST", "TRUE");
                             userViewModel.setAppInfo("new");
                         }
